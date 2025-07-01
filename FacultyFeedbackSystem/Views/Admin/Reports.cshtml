@@ -1,0 +1,35 @@
+﻿@model IEnumerable<dynamic>
+@{
+    ViewData["Title"] = "Feedback Summary Report";
+}
+
+<h2>📊 Feedback Summary</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No feedback available yet.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Faculty</th>
+                <th>Subject</th>
+                <th>Total Feedbacks</th>
+                <th>Average Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <td>@report.FacultyName</td>
+                    <td>@report.SubjectName</td>
+                    <td>@report.TotalFeedbacks</td>
+                    <td>@report.AverageRating.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

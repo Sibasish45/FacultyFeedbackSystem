@@ -1,0 +1,74 @@
+<!DOCTYPE html >
+<html lang="en" >
+<head >
+<meta charset="UTF-8" / >
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/ >
+<title > Faculty Feedback</title >
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" / >
+</head >
+<body class="bg-light" >
+
+<nav class="navbar navbar-dark bg-primary mb-4" >
+<div class="container" >
+<a class="navbar-brand" href="#" > Faculty Feedback</a >
+</div >
+</nav >
+
+<div class="container" >
+<div id="feedbackSection" >
+<h3 > Give Feedback</h3 >
+<form id="feedbackForm" class="mb-4" >
+<div class="mb-3" >
+<label class="form-label" > Student Name</label >
+<input type="text" class="form-control" id="studentName" required / >
+</div >
+<div class="mb-3" >
+<label class="form-label" > Faculty</label >
+<select class="form-select" id="facultySelect" required >
+<option value="" > Select Faculty</option >
+<option value="Dr. Smith" > Dr. Smith</option >
+<option value="Prof. Johnson" > Prof. Johnson</option >
+</select >
+</div >
+<div class="mb-3" >
+<label class="form-label" > Rating (1 to 5)</label >
+<input type="number" class="form-control" id="rating" min="1" max="5" required / >
+</div >
+<div class="mb-3" >
+<label class="form-label" > Comments</label >
+<textarea class="form-control" id="comments" rows="3" > </textarea >
+</div >
+<button type="submit" class="btn btn-success" > Submit Feedback</button >
+</form >
+</div >
+
+<div id="resultSection" >
+<h4 > All Feedback</h4 >
+<ul class="list-group" id="feedbackList" > </ul >
+</div >
+</div >
+
+<script >
+const feedbackForm = document.getElementById("feedbackForm");
+const feedbackList = document.getElementById("feedbackList");
+
+feedbackForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("studentName").value;
+    const faculty = document.getElementById("facultySelect").value;
+    const rating = document.getElementById("rating").value;
+    const comments = document.getElementById("comments").value;
+
+    const feedbackItem = document.createElement("li");
+    feedbackItem.className = "list-group-item";
+    feedbackItem.innerHTML = `<strong>${faculty}</strong> - Rated ${rating}/5 by ${name}<br/><small>${comments}</small>`;
+
+    feedbackList.appendChild(feedbackItem);
+
+    feedbackForm.reset();
+  });
+</script >
+
+</body >
+</html >

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FacultyFeedbackSystem.Models.Feedback>
+
+@{
+    ViewData["Title"] = "My Feedbacks";
+}
+
+<h2>My Submitted Feedbacks</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">You haven't submitted any feedback yet.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Faculty</th>
+                <th>Discipline</th>
+                <th>Clarity</th>
+                <th>Teaching</th>
+                <th>Knowledge</th>
+                <th>Punctuality</th>
+                <th>Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td>@f.Subject.SName</td>
+                    <td>@f.Subject.Faculty.Name</td>
+                    <td>@f.Discipline</td>
+                    <td>@f.Clarity</td>
+                    <td>@f.Teaching</td>
+                    <td>@f.Knowledge</td>
+                    <td>@f.Punctuality</td>
+                    <td>@f.SubmittedDate.ToString("dd-MMM-yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

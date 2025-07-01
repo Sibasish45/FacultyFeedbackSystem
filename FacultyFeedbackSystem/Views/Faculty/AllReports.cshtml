@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FacultyFeedbackSystem.ViewModels.SubjectFeedbackSummaryViewModel>
+@{
+    ViewData["Title"] = "All Feedback Summary";
+}
+
+<h2>📊 Feedback Summary for All Subjects</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No feedback submitted yet for any subject.</div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Total Feedbacks</th>
+                <th>Average Rating (out of 5)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var summary in Model)
+            {
+                <tr>
+                    <td>@summary.SubjectName</td>
+                    <td>@summary.TotalFeedbacks</td>
+                    <td>@summary.AverageRating.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>
+</div>

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Assign Faculty to Subject";
+    var subject = ViewBag.Subject as FacultyFeedbackSystem.Models.Subject;
+    var faculties = ViewBag.Faculties as List<FacultyFeedbackSystem.Models.Faculty>;
+}
+
+<h2>Assign Faculty</h2>
+
+<p><strong>Subject:</strong> @subject.SName (@subject.Code)</p>
+
+<form asp-action="AssignFaculty" method="post">
+    <input type="hidden" name="subjectId" value="@subject.SubjectID" />
+
+    <div class="form-group">
+        <label for="facultyId">Select Faculty</label>
+        <select name="facultyId" class="form-control">
+            @foreach (var faculty in faculties)
+            {
+                <option value="@faculty.FacultyID">@faculty.Name - @faculty.Department</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Assign</button>
+    <a asp-action="Subjects" class="btn btn-secondary">Cancel</a>
+</form>

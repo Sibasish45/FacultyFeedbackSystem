@@ -1,0 +1,167 @@
+﻿@model FacultyFeedbackSystem.ViewModels.FeedbackReportViewModel
+@{
+    ViewData["Title"] = "Feedback Report";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Feedback Report</h2>
+        <h4>@Model.SubjectName - @Model.FacultyName</h4>
+        <p><strong>Total Feedbacks Received:</strong> @Model.TotalFeedbacks</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Average Ratings</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <strong>Discipline:</strong> @Model.AverageDiscipline.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar" style="width: @((Model.AverageDiscipline / 5) * 100)%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <strong>Clarity:</strong> @Model.AverageClarity.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: @((Model.AverageClarity / 5) * 100)%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <strong>Teaching Method:</strong> @Model.AverageTeaching.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width: @((Model.AverageTeaching / 5) * 100)%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <strong>Knowledge:</strong> @Model.AverageKnowledge.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" style="width: @((Model.AverageKnowledge / 5) * 100)%"></div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <strong>Punctuality:</strong> @Model.AveragePunctuality.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" style="width: @((Model.AveragePunctuality / 5) * 100)%"></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mb-2">
+                    <strong>Overall Average:</strong> @Model.OverallAverage.ToString("F2")/5
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" style="width: @((Model.OverallAverage / 5) * 100)%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Performance Chart</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="performanceChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Improvement Suggestions</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.ImprovementSuggestions.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var suggestion in Model.ImprovementSuggestions)
+                        {
+                            <li class="list-group-item">@suggestion</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No specific suggestions available.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Student Comments</h5>
+            </div>
+            <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                @if (Model.Comments.Any())
+                {
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="alert alert-light">
+                            <small>@comment</small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No comments provided.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <button class="btn btn-success" onclick="exportToPDF()">Export to PDF</button>
+        <button class="btn btn-info" onclick="exportToExcel()">Export to Excel</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Chart.js implementation
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Discipline', 'Clarity', 'Teaching', 'Knowledge', 'Punctuality'],
+                datasets: [{
+                    label: 'Average Ratings',
+                    data: [@Model.AverageDiscipline, @Model.AverageClarity, @Model.AverageTeaching, @Model.AverageKnowledge, @Model.AveragePunctuality],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 5
+                    }
+                }
+            }
+        });
+
+        // Export functions
+        function exportToPDF() {
+            // Implementation for PDF export
+            alert('PDF export feature would be implemented using libraries like jsPDF');
+        }
+
+        function exportToExcel() {
+            // Implementation for Excel export
+            alert('Excel export feature would be implemented using libraries like SheetJS');
+        }
+    </script>
+}

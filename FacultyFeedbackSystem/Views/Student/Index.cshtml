@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FacultyFeedbackSystem.Models.Subject>
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Submit Feedback</h2>
+        <p>Select a subject to provide feedback for the faculty.</p>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var subject in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@subject.SName</h5>
+                    <p class="card-text">
+                        <strong>Faculty:</strong> @subject.Faculty.Name<br>
+                        <strong>Department:</strong> @subject.Faculty.Department<br>
+                        <strong>Code:</strong> @subject.Code<br>
+                        <strong>Credits:</strong> @subject.Credits
+                    </p>
+                    <a asp-action="SubmitFeedback" asp-route-subjectId="@subject.SubjectID" class="btn btn-primary">
+                        Submit Feedback
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <a asp-action="MyFeedbacks" class="btn btn-info">View My Submitted Feedbacks</a>
+    </div>
+</div>

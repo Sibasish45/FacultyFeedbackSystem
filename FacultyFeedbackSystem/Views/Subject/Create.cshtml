@@ -1,0 +1,47 @@
+﻿@model FacultyFeedbackSystem.Models.Subject
+@{
+    ViewData["Title"] = "Add Subject";
+}
+
+
+<h2>Add New Subject</h2>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="SName" class="form-label"></label>
+            <input asp-for="SName" class="form-control" />
+            <span asp-validation-for="SName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Code" class="form-label"></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="FacultyID" class="form-label">Faculty</label>
+            <select asp-for="FacultyID" class="form-control">
+                <option value="">Select Faculty</option>
+                @foreach (var faculty in ViewBag.Faculties)
+                {
+                    <option value="@faculty.FacultyID">@faculty.Name - @faculty.Department</option>
+                }
+            </select>
+            <span asp-validation-for="FacultyID" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Semester" class="form-label"></label>
+            <input asp-for="Semester" class="form-control" />
+            <span asp-validation-for="Semester" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Credits" class="form-label"></label>
+            <input asp-for="Credits" class="form-control" />
+            <span asp-validation-for="Credits" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

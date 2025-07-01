@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FacultyFeedbackSystem.Models.Subject>
+@{
+    ViewData["Title"] = "Subjects";
+}
+
+<h2>Subjects</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Add Subject</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Faculty</th>
+            <th>Semester</th>
+            <th>Credits</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>@subject.SName</td>
+                <td>@subject.Code</td>
+                <td>@subject.Faculty?.Name</td>
+                <td>@subject.Semester</td>
+                <td>@subject.Credits</td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@subject.SubjectID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

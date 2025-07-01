@@ -1,0 +1,74 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Faculty Feedback System</h1>
+    <p>A comprehensive platform for collecting and managing faculty feedback from students.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">For Students</h5>
+                <p class="card-text">Submit anonymous feedback for your faculty members and help improve the quality of education.</p>
+                <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Student Portal</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">For Faculty</h5>
+                <p class="card-text">View detailed feedback reports and analytics to understand student perspectives and improve teaching methods.</p>
+                <a asp-controller="Faculty" asp-action="Index" class="btn btn-success">Faculty Portal</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">For Administrators</h5>
+                <p class="card-text">Manage faculty, subjects, and view comprehensive reports across the institution.</p>
+                <a asp-controller="Admin" asp-action="Index" class="btn btn-info">Admin Portal</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body text-center">
+                <h3>@Model.TotalFaculties</h3>
+                <p>Total Faculties</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body text-center">
+                <h3>@Model.TotalSubjects</h3>
+                <p>Total Subjects</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body text-center">
+                <h3>@Model.TotalFeedbacks</h3>
+                <p>Total Feedbacks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body text-center">
+                <h3>@Model.AverageRating.ToString("F1")</h3>
+                <p>Average Rating</p>
+            </div>
+        </div>
+    </div>
+</div>
