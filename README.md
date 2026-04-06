@@ -1,5 +1,7 @@
 • Faculty Feedback System
 
+
+
 This repository contains a Faculty Feedback System web application developed as a summer internship project using C# and ASP.NET.
 The system enables students to provide structured feedback on faculty performance, and allows administrators to manage and analyze collected feedback.
 
