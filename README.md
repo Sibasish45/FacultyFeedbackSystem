@@ -32,3 +32,21 @@ FacultyFeedbackSystem/
 ├── Web.config
 ├── packages.config
 └── README.md
+How to Run the Project
+1. Clone the Repository
+git clone https://github.com/Sibasish45/FacultyFeedbackSystem.git
+2. Open the Project
+
+Open the project folder in Visual Studio 2022 and restore the required NuGet packages.
+
+3. Configure the Database
+
+Update the connection string in Web.config according to your SQL Server configuration and set up the required database tables.
+
+4. Run the Application
+
+Build the project and click Run in Visual Studio to start the application.
+
+Author
+
+K. Sibasish Subudhi
